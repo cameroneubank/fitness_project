@@ -12,11 +12,11 @@ import MapKit
 struct WorkoutRoute: Decodable {
     
     /// The collection of points.
-    let points: [WorkoutPoint]
+    let points: [WorkoutRoutePoint]
 
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.points = try container.decode([WorkoutPoint].self)
+        self.points = try container.decode([WorkoutRoutePoint].self)
     }
 }
 

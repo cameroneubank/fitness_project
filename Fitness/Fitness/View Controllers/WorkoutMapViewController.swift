@@ -44,36 +44,8 @@ final class WorkoutRouteViewController: UIViewController {
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        reloadMapView()
-    }
-
-    private func reloadMapView() {
-        // Each MKPolyline needs a start and end position.
-        //
-        // Create a collection of stand and end points in the route.
-        //
-        let startAndEndPoints = stride(from: 0, to: route.points.endIndex, by: 2).map {
-            (route.points[$0], $0 < route.points.index(before: route.points.endIndex) ? route.points[$0.advanced(by: 1)] : nil)
-        }
-        
-        let userAge = 28 // Assuming we have this persisted.
-        
-        // For each start and end point, create a ColoredPolyline that represents
-        // the average heart rate of the start and end point.
-        //
-        startAndEndPoints.forEach { startAndEndPoint in
-            let coordinates: [CLLocationCoordinate2D] = [startAndEndPoint.0.point, startAndEndPoint.1?.point].compactMap { $0 }
-            let polyLine = ColoredPolyline(coordinates: coordinates, count: coordinates.count)
-            let averageHeartRate: Int = {
-                if let endHeartRate = startAndEndPoint.1?.heartRate {
-                    return (startAndEndPoint.0.heartRate + endHeartRate) / 2
-                } else {
-                    return startAndEndPoint.0.heartRate
-                }
-            }()
-            polyLine.strokeColor = UIColor.representing(averageHeartRate, age: userAge)
-            mapView.addOverlay(polyLine)
-        }
+        addRouteStartAndEnd()
+        addRoutePolyline()
     }
 }
 
@@ -90,3 +62,63 @@ extension WorkoutRouteViewController: MKMapViewDelegate {
         return MKOverlayRenderer()
     }
 }
+
+// MARK: - Map Decorating
+
+private extension WorkoutRouteViewController {
+    
+    /// Adds an annotation for the start and end points in the route to `mapView`, if they exist.
+    func addRouteStartAndEnd() {
+        var annotations = [MKAnnotation]()
+        if let first = route.points.first {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = first.point
+            annotation.title = "Start"
+            annotations.append(annotation)
+        }
+        if let last = route.points.last {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = last.point
+            annotation.title = "End"
+            annotations.append(annotation)
+        }
+        mapView.showAnnotations(annotations, animated: false)
+    }
+
+    /// Adds multiple polylines to `mapView` of different colors to show the path of the route,
+    /// and variations in heart rate over the course of the route.
+    func addRoutePolyline() {
+        // We'll use the user's age to
+        // determine what percentage of the user's maximum heart rate
+        // is used at a particular point.
+        //
+        // This assumes we might have this persisted somewhere.
+        //
+        let userAge = 28
+        
+        // This logic iterates over all points in the route, and creates a polyline that starts
+        // at the current point and ends at the next point.
+        //
+        // The polyline created is colored with a color that represents the average heart rate
+        // between the start and end coordinate of the point.
+        //
+        route.points.enumerated().forEach { i, point in
+            let points: [WorkoutRoutePoint] = [point, route.points[safeIndex: i + 1]].compactMap { $0 }
+            let coordinates: [CLLocationCoordinate2D] = points.map { $0.point }
+            let polyLine = ColoredPolyline(coordinates: coordinates, count: coordinates.count)
+            
+            let averageHeartRate: Int = {
+                guard let startHeartRate = points.first?.heartRate else { return 60 }
+                if let endHeartRate = points.last?.heartRate {
+                    return (startHeartRate + endHeartRate) / 2
+                } else {
+                    return startHeartRate
+                }
+            }()
+
+            polyLine.strokeColor = UIColor.representing(averageHeartRate, age: userAge)
+            mapView.addOverlay(polyLine)
+        }
+    }
+}
+

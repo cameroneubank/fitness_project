@@ -1,5 +1,5 @@
 //
-//  WorkoutPoint.swift
+//  WorkoutRoutePoint.swift
 //  Fitness
 //
 //  Created by Cameron Eubank on 8/7/21.
@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 /// Represents a single geographical point during a workout and any associate data captured on the point.
-struct WorkoutPoint: Decodable {
+struct WorkoutRoutePoint: Decodable {
     
     /// The coordinate of the point.
     let point: CLLocationCoordinate2D
@@ -17,7 +17,7 @@ struct WorkoutPoint: Decodable {
     /// The heart rate captured at the point.
     let heartRate: Int
     
-    enum WorkoutPointDecodingError: Error {
+    enum WorkoutRoutePointDecodingError: Error {
         case malformedData
     }
     
@@ -27,7 +27,7 @@ struct WorkoutPoint: Decodable {
         guard let lat = array[safeIndex: 0],
               let long = array[safeIndex: 1],
               let heartRate = array[safeIndex: 2] else {
-            throw WorkoutPointDecodingError.malformedData
+            throw WorkoutRoutePointDecodingError.malformedData
         }
         self.point = CLLocationCoordinate2D(latitude: lat, longitude: long)
         self.heartRate = Int(heartRate)
