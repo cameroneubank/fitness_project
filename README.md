@@ -4,9 +4,9 @@
 
 ### Getting Started:
 - Clone the repository
-- Open the Fitness.xcodeproj
+- Open `Fitness.xcodeproj` with XCode
 - Select the `Fitness` scheme
-- Run (cmd+r)
+- `cmd+r`
 
 ### Features:
 - The `Fitness` application shows the route of a user's workout journey on a map.
