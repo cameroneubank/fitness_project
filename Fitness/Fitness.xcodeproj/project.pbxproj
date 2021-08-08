@@ -14,7 +14,7 @@
 		CA5E6EC126BF40C100ACC8ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA5E6EBF26BF40C100ACC8ED /* LaunchScreen.storyboard */; };
 		CA5E6EE526BF417D00ACC8ED /* latitude_longitude_heartrate.json in Resources */ = {isa = PBXBuildFile; fileRef = CA5E6EE426BF417D00ACC8ED /* latitude_longitude_heartrate.json */; };
 		CA5E6EE826BF419600ACC8ED /* WorkoutRouteLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E6EE726BF419600ACC8ED /* WorkoutRouteLoader.swift */; };
-		CA5E6EEA26BF41C000ACC8ED /* WorkoutPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E6EE926BF41C000ACC8ED /* WorkoutPoint.swift */; };
+		CA5E6EEA26BF41C000ACC8ED /* WorkoutRoutePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E6EE926BF41C000ACC8ED /* WorkoutRoutePoint.swift */; };
 		CA5E6EED26BF55E500ACC8ED /* WorkoutRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E6EEC26BF55E500ACC8ED /* WorkoutRoute.swift */; };
 		CA5E6EEF26BF566500ACC8ED /* Array+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E6EEE26BF566500ACC8ED /* Array+.swift */; };
 		CA5E6EF226BF56A600ACC8ED /* ColoredPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5E6EF126BF56A600ACC8ED /* ColoredPolyline.swift */; };
@@ -47,7 +47,7 @@
 		CA5E6ECD26BF40C100ACC8ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA5E6EE426BF417D00ACC8ED /* latitude_longitude_heartrate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = latitude_longitude_heartrate.json; sourceTree = "<group>"; };
 		CA5E6EE726BF419600ACC8ED /* WorkoutRouteLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRouteLoader.swift; sourceTree = "<group>"; };
-		CA5E6EE926BF41C000ACC8ED /* WorkoutPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPoint.swift; sourceTree = "<group>"; };
+		CA5E6EE926BF41C000ACC8ED /* WorkoutRoutePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRoutePoint.swift; sourceTree = "<group>"; };
 		CA5E6EEC26BF55E500ACC8ED /* WorkoutRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutRoute.swift; sourceTree = "<group>"; };
 		CA5E6EEE26BF566500ACC8ED /* Array+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+.swift"; sourceTree = "<group>"; };
 		CA5E6EF126BF56A600ACC8ED /* ColoredPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPolyline.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		CA5E6EEB26BF41C300ACC8ED /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CA5E6EE926BF41C000ACC8ED /* WorkoutPoint.swift */,
+				CA5E6EE926BF41C000ACC8ED /* WorkoutRoutePoint.swift */,
 				CA5E6EEC26BF55E500ACC8ED /* WorkoutRoute.swift */,
 			);
 			path = Models;
@@ -280,7 +280,7 @@
 				CA5E6EED26BF55E500ACC8ED /* WorkoutRoute.swift in Sources */,
 				CA5E6EE826BF419600ACC8ED /* WorkoutRouteLoader.swift in Sources */,
 				CA5E6EF226BF56A600ACC8ED /* ColoredPolyline.swift in Sources */,
-				CA5E6EEA26BF41C000ACC8ED /* WorkoutPoint.swift in Sources */,
+				CA5E6EEA26BF41C000ACC8ED /* WorkoutRoutePoint.swift in Sources */,
 				CA5E6EB726BF40C000ACC8ED /* SceneDelegate.swift in Sources */,
 				CA5E6EEF26BF566500ACC8ED /* Array+.swift in Sources */,
 				CA5E6EF426BF5C5E00ACC8ED /* UIColor+.swift in Sources */,
